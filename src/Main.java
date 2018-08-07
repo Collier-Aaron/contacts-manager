@@ -1,3 +1,10 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -6,6 +13,10 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         GetList g = new GetList();
+
+        Path p = Paths.get("src", "contacts.txt");
+
+
         System.out.println("1. View contacts.\n" +
                 "2. Add a new contact.\n" +
                 "3. Search a contact by name.\n" +
@@ -31,10 +42,34 @@ public class Main {
 
         } else if (userChoice == 2){
 
+            System.out.println("Type in a name: ");
+
+            String newContact = sc.nextLine();
+
+            System.out.println("Type in the phone number: ");
+
+            newContact +="-" + sc.nextLine();
+
+            List<String> contact = new ArrayList<String>();
+
+            contact.add(newContact);
+
+            try{
+                Files.write(p, contact, StandardOpenOption.APPEND);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
+
+
         } else if (userChoice == 3){
 
-        } else {
+        } else if(userChoice == 4){
 
+        }else if(userChoice == 5){
+
+        }else{
+            System.out.println("You done messed up");
         }
 
 
