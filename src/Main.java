@@ -6,9 +6,6 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         GetList g = new GetList();
-        System.out.println(g.getList().get(0).name
-                + " | " + g.getList().get(0).number);
-
         System.out.println("1. View contacts.\n" +
                 "2. Add a new contact.\n" +
                 "3. Search a contact by name.\n" +
@@ -18,7 +15,6 @@ public class Main {
 
         String userInput = sc.nextLine();
         int userChoice = 0;
-        System.out.println(userInput);
 
         try {
             userChoice = Integer.valueOf(userInput);
