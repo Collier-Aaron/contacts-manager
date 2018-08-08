@@ -25,7 +25,7 @@ public class Main {
 
         do {
 
-            System.out.println("1. View contacts.\n" +
+            System.out.println("\n\n1. View contacts.\n" +
                     "2. Add a new contact.\n" +
                     "3. Search a contact by name.\n" +
                     "4. Delete an existing contact.\n" +
