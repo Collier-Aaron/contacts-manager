@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,9 +14,14 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         GetList g = new GetList();
+        ArrayList<Contact> contacts = new ArrayList<>();
 
         Path p = Paths.get("src", "contacts.txt");
 
+        for (byte i = 0; i < g.getList().size(); i++){
+            contacts.add(g.getList().get(i));
+
+        }
 
         System.out.println("1. View contacts.\n" +
                 "2. Add a new contact.\n" +
@@ -34,10 +40,8 @@ public class Main {
         }
 
         if (userChoice == 1){
-            for (byte i = 0; i < g.getList().size(); i++){
-                System.out.println(g.getList().get(i).name
-                        + " | " + g.getList().get(i).number);
-
+            for (Contact c : contacts){
+                System.out.println(c.name + " | "+ c.number);
             }
 
         } else if (userChoice == 2){
@@ -59,19 +63,45 @@ public class Main {
             }catch (IOException e){
                 e.printStackTrace();
             }
-
-
-
         } else if (userChoice == 3){
+            System.out.println("Search for a contact");
+
+            String input = sc.nextLine();
+
+            for(Contact c : contacts){
+                if (input.equals(c.name)){
+                    System.out.println(c.name + " | "+ c.number);
+                }
+            }
 
         } else if(userChoice == 4){
+            System.out.println("Which contact would you like to delete?");
+            String input = sc.nextLine();
+
+            for (int i = 0; i < contacts.size(); i++) {
+                if (input.equals(contacts.get(i).name)){
+                    contacts.remove(i);
+                    System.out.println(contacts);
+                }
+            }
+
 
         }else if(userChoice == 5){
+            System.out.println("Bye then..");
 
-        }else{
+        } else {
             System.out.println("You done messed up");
         }
+        List<String> outputContacts = new ArrayList<String>();
+        for (Contact c : contacts ){
+            String newContact = c.name +"-"+ c.number;
+            outputContacts.add(newContact);
+        }
 
-
+        try{
+            Files.write(p, outputContacts);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
