@@ -5,9 +5,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetList {
+class GetList {
 
-    public List<Contact> getList(){
+    static List<Contact> getList(){
 
         Path p = Paths.get("src", "contacts.txt");
 

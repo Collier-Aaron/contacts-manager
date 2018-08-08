@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,14 +11,9 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        GetList g = new GetList();
-        ArrayList<Contact> contacts = new ArrayList<>();
+        List<Contact> contacts = GetList.getList();
 
         Path p = Paths.get("src", "contacts.txt");
-
-        for (byte i = 0; i < g.getList().size(); i++){
-            contacts.add(g.getList().get(i));
-        }
 
         boolean looping = true;
 
@@ -91,7 +85,7 @@ public class Main {
             }
 
         }while(looping);
-        List<String> outputContacts = new ArrayList<String>();
+        List<String> outputContacts = new ArrayList<>();
 
         for (Contact c : contacts ){
             String newContact = c.name +"-"+ c.number;
