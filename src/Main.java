@@ -50,21 +50,16 @@ public class Main {
 
                 System.out.println("Type in a name: ");
 
-                String newContact = sc.nextLine();
+                String newName = sc.nextLine();
 
                 System.out.println("Type in the phone number: ");
 
-                newContact += "-" + sc.nextLine();
+                String newNumber = sc.nextLine();
 
-                List<String> contact = new ArrayList<String>();
+                Contact newContact = new Contact(newName, newNumber);
 
-                contact.add(newContact);
+                contacts.add(newContact);
 
-                try {
-                    Files.write(p, contact, StandardOpenOption.APPEND);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             } else if (userChoice == 3) {
                 System.out.println("Search for a contact");
 
